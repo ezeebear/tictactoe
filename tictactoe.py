@@ -1,15 +1,14 @@
 from os import system, name
-from time import sleep
 
-board = ["__","__","__",
-         "__","__","__",
-         "__","__","__"]
+board = ["___","___","___",
+         "___","___","___",
+         "___","___","___"]
+
 pos = 0
 player = " X "
 game_on = True
 winner = None
-
-
+count = ""
 
 def clear():
     if name == 'nt':
@@ -17,12 +16,10 @@ def clear():
     else:
         _ = system('clear')
 
-
 def game():
     print("|"+board[0]+"|"+board[1]+"|"+board[2]+"|")
     print("|"+board[3]+"|"+board[4]+"|"+board[5]+"|")
     print("|"+board[6]+"|"+board[7]+"|"+board[8]+"|")
-    print(player,"turn")
 
 def main_game():
     while game_on is True:
@@ -40,7 +37,7 @@ def answer():
         print("Wrong input..")
         pos = input("Choose a position from 1-9: ")
     pos = int(pos) - 1
-    while board[pos] != "__":
+    while board[pos] != "___":
         print("Wrong input..")
         pos = int(input("You cannot overwrite the value: "))
         pos = pos - 1
@@ -62,44 +59,98 @@ def result():
 
 def win():
         # Row wins
-        if board[0] == board[1] == board[2] != "__":
+        global board, board2
+        if board[0] == board[1] == board[2] != "___":
             print(board[0]+"wins")
             game()
-            quit()
-        elif board[3] == board[4] == board[5] != "__":
+            count = input("Do you wanna play the game again?(y/n): ")
+            if count == "y":
+                board = ["___","___","___",
+                         "___","___","___",
+                         "___","___","___"]
+            else:
+                quit()
+        elif board[3] == board[4] == board[5] != "___":
             print(board[3]+"wins")
             game()
-            quit()
-        elif board[6] == board[7] == board[8] != "__":
+            count = input("Do you wanna play the game again?(y/n): ")
+            if count == "y":
+                board = ["___","___","___",
+                         "___","___","___",
+                         "___","___","___"]
+            else:
+                quit()
+        elif board[6] == board[7] == board[8] != "___":
             print(board[6]+"wins")
             game()
-            quit()
-        elif board[0] == board[3] == board[6] != "__":
+            count = input("Do you wanna play the game again?(y/n): ")
+            if count == "y":
+                board = board2
+            else:
+                quit()
+        elif board[0] == board[3] == board[6] != "___":
             print(board[0]+"wins")
             game()
-            quit()
-        elif board[1] == board[4] == board[7] != "__":
+            count = input("Do you wanna play the game again?(y/n): ")
+            if count == "y":
+                board = ["___","___","___",
+                         "___","___","___",
+                         "___","___","___"]
+            else:
+                quit()
+        elif board[1] == board[4] == board[7] != "___":
             print(board[1]+"wins")
             game()
-            quit()
-        elif board[2] == board[5] == board[8] != "__":
+            count = input("Do you wanna play the game again?(y/n): ")
+            if count == "y":
+                board = ["___","___","___",
+                         "___","___","___",
+                         "___","___","___"]
+            else:
+                quit()
+        elif board[2] == board[5] == board[8] != "___":
             print(board[2]+"wins")
             game()
-            quit()
-        elif board[0] == board[4] == board[8] != "__":
+            count = input("Do you wanna play the game again?(y/n): ")
+            if count == "y":
+                board = ["___","___","___",
+                         "___","___","___",
+                         "___","___","___"]
+            else:
+                quit()
+        elif board[0] == board[4] == board[8] != "___":
             print(board[0]+"wins")
             game()
-            quit()
-        elif board[2] == board[4] == board[6] != "__":
+            count = input("Do you wanna play the game again?(y/n): ")
+            if count == "y":
+                board = ["___","___","___",
+                         "___","___","___",
+                         "___","___","___"]
+            else:
+                quit()
+        elif board[2] == board[4] == board[6] != "___":
             print(board[2]+"wins")
             game()
-            quit()
+            count = input("Do you wanna play the game again?(y/n): ")
+            if count == "y":
+                board = ["___","___","___",
+                         "___","___","___",
+                         "___","___","___"]
+            else:
+                quit()
 
 def tie():
-    if board[0] != "__" and board[0] != "__" and board[1] != "__" and board[2] != "__" and board[3] != "__" and board[4] != "__" and board[5] != "__" and board[6] != "__" and board[7] != "__" and board[8] != "__":
+    global board, board2
+    if board[0] != "___" and board[0] != "___" and board[1] != "___" and board[2] != "___" and board[3] != "___" and board[4] != "___" and board[5] != "___" and board[6] != "___" and board[7] != "___" and board[8] != "___":
         print("It's a tie..!")
         game()
-        quit()
+        count = input("Do you wanna play the game again?(y/n): ")
+        if count == "y":
+            board = ["___","___","___",
+                     "___","___","___",
+                     "___","___","___"]
+        else:
+            quit()
 
 
 
